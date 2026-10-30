@@ -1,0 +1,42 @@
+.wrapper {
+  width: 159px;
+}
+
+.card {
+  width: 159px;
+  height: 205px;
+  border-radius: 10px;
+  background-color: var(--color-white);
+  overflow: hidden; /* keeps the image inside the rounded border */
+  display: flex;
+  flex-direction: column;
+}
+
+.image {
+  width: 100%;
+  height: 170px; /* image : bottom section is roughly 170 : 35 */
+  object-fit: cover;
+  display: block;
+}
+
+.banner {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+}
+
+.chip {
+  background-color: var(--color-black) !important;
+  color: var(--color-white) !important;
+  font-family: "Poppins", sans-serif !important;
+  font-size: 10px !important;
+  height: 20px !important;
+}
+
+.title {
+  margin: 8px 0 0;
+  color: var(--color-white);
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+}

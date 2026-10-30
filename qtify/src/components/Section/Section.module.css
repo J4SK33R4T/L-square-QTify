@@ -1,0 +1,33 @@
+.section {
+  padding: 24px 32px;
+  color: var(--color-white);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between; /* space between title and Collapse */
+  align-items: center;
+  margin-bottom: 24px;            /* space between header and grid */
+}
+
+.title {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.toggle {
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
