@@ -14,7 +14,7 @@ function Section({ title, endpoint, type = "album" }) {
   const [items, setItems] = useState([]);
   const [genres, setGenres] = useState([]);
   const [selectedGenre, setSelectedGenre] = useState("all");
-  const [collapsed, setCollapsed] = useState(false);
+  const [showCarousel, setShowCarousel] = useState(true);
 
   // Fetch albums or songs
   useEffect(() => {
@@ -61,11 +61,11 @@ function Section({ title, endpoint, type = "album" }) {
         <h3 className={styles.title}>{title}</h3>
         {!isSongs && (
           <button
-            className={styles.toggle}
-            onClick={() => setCollapsed((prev) => !prev)}
-          >
-            {collapsed ? "Show All" : "Collapse"}
-          </button>
+  className={styles.toggle}
+  onClick={() => setShowCarousel((prev) => !prev)}
+>
+  {showCarousel ? "Show All" : "Collapse"}
+</button>
         )}
       </div>
 
@@ -88,7 +88,7 @@ function Section({ title, endpoint, type = "album" }) {
         </Tabs>
       )}
 
-      {isSongs || collapsed ? (
+      {isSongs || showCarousel ? (
         <Carousel
           key={selectedGenre}
           data={filteredItems}
