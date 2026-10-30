@@ -8,12 +8,13 @@ function CarouselRightNavigation() {
   const [isEnd, setIsEnd] = useState(false);
 
   useEffect(() => {
-    const update = () => setIsEnd(swiper.isEnd);
-    update(); // sync immediately on mount
-    const events = ["slideChange", "fromEdge", "reachEnd", "resize", "breakpoint", "update"];
-    events.forEach((e) => swiper.on(e, update));
-    return () => events.forEach((e) => swiper.off(e, update));
-  }, [swiper]);
+  if (!swiper || typeof swiper.on !== "function") return;
+  const update = () => setIsEnd(swiper.isEnd);
+  update();
+  const events = ["slideChange", "fromEdge", "reachEnd", "resize", "breakpoint", "update"];
+  events.forEach((e) => swiper.on(e, update));
+  return () => events.forEach((e) => swiper.off(e, update));
+}, [swiper]);
 
   return (
     <div className={styles.rightNavigation} slot="container-end">

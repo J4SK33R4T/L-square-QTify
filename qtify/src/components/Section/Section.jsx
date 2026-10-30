@@ -21,7 +21,7 @@ function Section({ title, endpoint, type = "album" }) {
     const fetchItems = async () => {
       try {
         const res = await axios.get(endpoint);
-        setItems(res.data);
+        setItems(Array.isArray(res.data) ? res.data : []);
       } catch (error) {
         console.error("Failed to fetch data:", error);
       }
@@ -35,7 +35,7 @@ function Section({ title, endpoint, type = "album" }) {
     const fetchGenres = async () => {
       try {
         const res = await axios.get(GENRES_URL);
-        setGenres(res.data.data); // response looks like { data: [...] }
+        setGenres(Array.isArray(res.data?.data) ? res.data.data : []); // response looks like { data: [...] }
       } catch (error) {
         console.error("Failed to fetch genres:", error);
       }
@@ -45,7 +45,7 @@ function Section({ title, endpoint, type = "album" }) {
 
   const filteredItems =
     isSongs && selectedGenre !== "all"
-      ? items.filter((song) => song.genre.key === selectedGenre)
+      ? items.filter((song) => song.genre?.key === selectedGenre)
       : items;
 
   const renderCard = (item) =>

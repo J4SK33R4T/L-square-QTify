@@ -7,13 +7,14 @@ function CarouselLeftNavigation() {
   const swiper = useSwiper();
   const [isBeginning, setIsBeginning] = useState(true);
 
-  useEffect(() => {
-    const update = () => setIsBeginning(swiper.isBeginning);
-    update(); // sync immediately on mount
-    const events = ["slideChange", "fromEdge", "reachBeginning", "resize", "breakpoint", "update"];
-    events.forEach((e) => swiper.on(e, update));
-    return () => events.forEach((e) => swiper.off(e, update));
-  }, [swiper]);
+ useEffect(() => {
+  if (!swiper || typeof swiper.on !== "function") return;
+  const update = () => setIsBeginning(swiper.isBeginning);
+  update();
+  const events = ["slideChange", "fromEdge", "reachBeginning", "resize", "breakpoint", "update"];
+  events.forEach((e) => swiper.on(e, update));
+  return () => events.forEach((e) => swiper.off(e, update));
+}, [swiper]);
 
   return (
     <div className={styles.leftNavigation} slot="container-end">
